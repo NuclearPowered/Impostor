@@ -65,6 +65,7 @@ namespace Impostor.Server.Net.State
             if (HostId == playerId)
             {
                 await MigrateHost();
+                await _eventManager.CallAsync(new GameHostChangedEvent(this, player, Host));
             }
 
             if (isBan && player.Client.Connection != null)
